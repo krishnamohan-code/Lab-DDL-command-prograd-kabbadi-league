@@ -125,7 +125,7 @@ CREATE TABLE game
    first_innings_id int not null,
    constraint forkey_inn1 foreign key (first_innings_id) references innings(id),
    second_innings_id int not null,
-   constraint forkey_inn2 foreign key (Second_innings_id) references innings(id),
+   constraint forkey_inn2 foreign key (Second_innings_id) references innings(id)
 );
 -- 13. **Drop table city**
        DROP TABLE city;
