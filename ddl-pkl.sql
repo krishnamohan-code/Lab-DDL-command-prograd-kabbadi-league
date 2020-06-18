@@ -21,6 +21,7 @@ CREATE TABLE city
              id int,
              innings_numner int not null
          );
+       
 -- 4. **Create table extra_type**
       CREATE TABLE extra_type
       (
@@ -61,7 +62,7 @@ CREATE TABLE city
             id int ,
             stadium_name varchar(50) not null,
             city_id int not null,
-            constraint forkey_venue foreign key (city_id) references city(id)
+            constraint forkey_venue foreign key (city_id) references city(id),
             primary key(id)
       );
 -- 9. **Create table event**
@@ -69,7 +70,7 @@ CREATE TABLE city
     (
        id int,
        innings_id int not null,
-       constraints forkey_event foreign key (innings_id) references innings(id),
+       constraint forkey_event foreign key (innings_id) references innings(id),
        event_no int not null,
        raider_id int not null,
        raid_points int not null ,
@@ -84,12 +85,12 @@ CREATE TABLE city
    (
      id int,
      event_id int not null,
-     constraints forkey_event_id foreign key (event_id) references event(id),
+     constraint forkey_event_id foreign key (event_id) references event(id),
      extra_type_id int not null,
-     constraints forkey_event_type foreign key (event_type_id) references event_type(id),
+     constraint forkey_event_type foreign key (extra_type_id) references extra_type(id),
      points int not null,
      scoring_team_id int not null,
-     constraints forkey_event_score foreign key (scoring_team_id) references team(id),
+     constraint forkey_event_score foreign key (scoring_team_id) references team(id),
      primary key(id)
    );
 -- 11. **Create table outcome**
@@ -110,21 +111,21 @@ CREATE TABLE game
    id int,
    game_data DATE not null,
    team_id_1 int not null,
-   constraints forkey_team1 foreign key (team_id_1) references team(id),
+   constraint forkey_team1 foreign key (team_id_1) references team(id),
    team_id_2 int not null,
-   constraints forkey_team2 foreign key (team_id_2) references team(id),
+   constraint forkey_team2 foreign key (team_id_2) references team(id),
    venue_id int not null,
-   constraints forkey_venu foreign key (venu_id) references venue(id),
+   constraint forkey_venu foreign key (venu_id) references venue(id),
    outcome_id int not null;
-   constraints forkey_outcome foreign key (outcome_id) references outcome(id),
+   constraint forkey_outcome foreign key (outcome_id) references outcome(id),
    referee_id_1 int not null,
-   constraints forkey_id1 foreign key (referee_id_1) references referee(id),
+   constraint forkey_id1 foreign key (referee_id_1) references referee(id),
    referee_id_2 int not null,
-   constraints forkey_id2 foreign key (referee_id_2) references referee(id),
+   constraint forkey_id2 foreign key (referee_id_2) references referee(id),
    first_innings_id int not null,
-   constraints forkey_inn1 foreign key (first_innings_id) references innings(id),
+   constraint forkey_inn1 foreign key (first_innings_id) references innings(id),
    second_innings_id int not null,
-   constraints forkey_inn2 foreign key (Second_innings_id) references innings(id)
+   constraint forkey_inn2 foreign key (Second_innings_id) references innings(id),
 );
 -- 13. **Drop table city**
        DROP TABLE city;
